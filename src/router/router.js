@@ -76,9 +76,11 @@ router.post("/form", async (req, res) => {
 
 router.get("/results", (req, res, next) => {
   Especies.find({}).then((especie) => {
+
     res.render("views", {
       pis: especie,
     });
+    console.log(especie)
   });
 });
 
@@ -107,7 +109,7 @@ router.put("/:name", (req, res) => {
   )
     .then(() => {
       res.send({
-        success: "Usuário atualizado som sucesso",
+        success: "Espécie atualizada com sucesso",
       });
     })
     .catch((err) => {
@@ -121,7 +123,7 @@ router.delete("/:name", (req, res) => {
   })
     .then(() => {
       res.json({
-        success: "Usuário deletado com sucesso",
+        success: "Registro deletado com sucesso",
       });
     })
     .catch((err) => {
@@ -129,14 +131,5 @@ router.delete("/:name", (req, res) => {
     });
 });
 
-function deleteUser(req, res) {
-  let button = document.getElementById("btn");
-
-  button.addEventListener((e) => {
-    console.log("Botão clicado");
-  });
-}
-
-//delete router
 
 module.exports = router;

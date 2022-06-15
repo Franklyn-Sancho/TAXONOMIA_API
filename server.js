@@ -4,9 +4,7 @@ const path = require('path')
 const mongoose = require('mongoose') 
 const routes = require('./src/router/router'); 
 
-
 const app = express();
-
 
 require('dotenv').config()
 

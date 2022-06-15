@@ -9,8 +9,8 @@
 <body>
     <div class="container">
         <div class="form-user">
+            <h5>registre uma espécie</h5>
             <form action="/form" method="POST">
-                <h5>registre uma espécie</h5>
                 <input type="text" placeholder="nome popular" name="name">
                 <input type="text" placeholder="reino" name="reino">
                 <input type="text" placeholder="filo" name="filo">
@@ -28,10 +28,11 @@
     </div>
 
     <style>
+
         form {
-            width: 500px;
+            width: 800px;
             display: grid;
-            justify-content: center;
+            grid-template-columns: repeat(3, 1fr);
         }
 
         form h5 {
@@ -39,13 +40,19 @@
         }
 
         form input {
-            width: 400px;
-            height: 30px;
+            width: 250px;
+            height: 40px;
             margin: 5px;
+            border-radius: 3px;
+            border: 1px solid #464646;
+        }
+
+        form input::placeholder {
+            font-size: 17px;
         }
 
         form button {
-            width: 400px;
+            width: 250px;
             height: 40px;
             margin: 8px;
         }
