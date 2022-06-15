@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Json</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-user">
+            <form action="/form" method="POST">
+                <h5>registre uma espécie</h5>
+                <input type="text" placeholder="nome popular" name="name">
+                <input type="text" placeholder="reino" name="reino">
+                <input type="text" placeholder="filo" name="filo">
+                <input type="text" placeholder="classe" name="classe">
+                <input type="text" placeholder="infraclasse" name="infraclasse">
+
+                <input type="text" placeholder="ordem" name="ordem">
+                <input type="text" placeholder="familia" name="familia">
+                <input type="text" placeholder="genero" name="genero">
+                <input type="text" placeholder="especie" name="especie">
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        form {
+            width: 500px;
+            display: grid;
+            justify-content: center;
+        }
+
+        form h5 {
+            margin: 5px;
+        }
+
+        form input {
+            width: 400px;
+            height: 30px;
+            margin: 5px;
+        }
+
+        form button {
+            width: 400px;
+            height: 40px;
+            margin: 8px;
+        }
+    </style>
+</body>
+</html>
