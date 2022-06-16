@@ -1,26 +1,18 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
+/* const bcrypt = require("bcrypt"); */
 const Especies = require("../model/animals.model");
 const mongoose = require("mongoose");
-const path = require("path");
-//Rotas da api
+const fs = require("fs");
+
 const router = express.Router();
 
-const app = express();
-
-router.get("/main", (req, res) => {
-  res.json("teste");
-});
-
+//rota EJS do formulário
 router.get("/form", (req, res) => {
   res.render("index");
 });
 
 router.post("/form", async (req, res) => {
-  const {name, reino, filo, classe, infraclasse, ordem, familia, genero, especie } =
-    req.body;
-
-  let data = {
+  const {
     name,
     reino,
     filo,
@@ -30,7 +22,7 @@ router.post("/form", async (req, res) => {
     familia,
     genero,
     especie,
-  };
+  } = req.body;
 
   try {
     if (
@@ -63,9 +55,18 @@ router.post("/form", async (req, res) => {
       genero,
       especie,
     });
-    especies.save(data).then(() => {
+    especies.save().then(() => {
+      let data = JSON.stringify(especies, null, 2);
+
+      fs.writeFile("especie-log.json", data, (err) => {
+        if (err) throw err;
+        res.json({
+          success: "Espécie registrada com sucesso"
+        })
+      });
+
       console.log("Espécie cadastrada com sucesso");
-      res.status(200).redirect("/results");
+
     });
   } catch {
     res.status(500).send({
@@ -74,18 +75,52 @@ router.post("/form", async (req, res) => {
   }
 });
 
-router.get("/results", (req, res, next) => {
-  Especies.find({}).then((especie) => {
+router.get("/", (req, res) => {
+  res.render("main");
+});
 
+router.get("/especies/ejs", (req, res, next) => {
+  Especies.find({}).then((especie) => {
     res.render("views", {
       pis: especie,
     });
-    console.log(especie)
   });
 });
 
+router.get("/especies/json", (req, res) => {
+  Especies.find({}).then((especie) => {
+    res.json({
+      success: "retornando todas as espécies: ",
+      Especies: especie,
+    });
+
+    let data = JSON.stringify(especie, null, 2)
+
+    fs.writeFile('especies-logs.json', data, (err) => {
+      if(err) throw err
+      console.log('Log criado com sucesso')
+    })
+  });
+});
+
+router.get("especie/:name", async (req, res) => {
+  const { name } = req.body;
+
+  const especie = await Especies.findOne({
+    name: name,
+  })
+    .then(() => {
+      res.status(200).json(especie);
+    })
+    .catch((err) => {
+      res.status(400).send({
+        failed: "Espécie não encontrada",
+      });
+    });
+});
+
 //update router
-router.put("/:name", (req, res) => {
+router.put("/especie/:name", (req, res) => {
   User.updateOne(
     {
       name: req.body.name,
@@ -100,7 +135,7 @@ router.put("/:name", (req, res) => {
         ordem: req.body.ordem,
         familia: req.body.familia,
         genero: req.body.genero,
-        especie: req.body.especie
+        especie: req.body.especie,
       },
     },
     {
@@ -117,7 +152,7 @@ router.put("/:name", (req, res) => {
     });
 });
 
-router.delete("/:name", (req, res) => {
+router.delete("/especie/:name", (req, res) => {
   User.deleteOne({
     name: req.body.name,
   })
@@ -130,6 +165,5 @@ router.delete("/:name", (req, res) => {
       res.send(err);
     });
 });
-
 
 module.exports = router;

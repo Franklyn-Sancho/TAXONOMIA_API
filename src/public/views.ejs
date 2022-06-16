@@ -4,40 +4,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../controllers/controllers.js"></script>
     <title>resultados</title>
   </head>
   <body>
-    <h4>Lista de cadastrados</h4>
-    <table border="1">
-    <thead>
-      <tr>
-        <td>nome popular</td>
-        <td>reino</td>
-        <td>filo</td>
-        <td>classe</td>
-        <td>infraclasse</td>
-        <td>ordem</td>
-        <td>familia</td>
-        <td>genero</td>
-        <td>especie</td>
-      </tr>
-    </thead>
+
+    <div class="container">
+      <h4>Lista de cadastrados</h4>
+    
+      <table border="1">
+      <thead>
+        <tr>
+          <td>nome popular</td>
+          <td>reino</td>
+          <td>filo</td>
+          <td>classe</td>
+         <td>infraclasse</td>
+          <td>ordem</td>
+          <td>familia</td>
+          <td>genero</td>
+         <td>especie</td>
+        </tr>
+      </thead>
     <tbody>
       <% pis.forEach(function(data) { %>
-      <tr>
-        <td><%= data.name %> </td>
-        <td><%= data.reino %> </td>
-        <td><%= data.filo %></td>
-        <td><%= data.classe %></td>
-        <td><%= data.infraclasse %></td>
-        <td><%= data.ordem %></td>
-        <td><%= data.familia %></td>
-        <td><%= data.genero %></td>
-        <td><%= data.especie %></td>
-      </tr>
+        <tr>
+          <td><%= data.name %> </td>
+          <td><%= data.reino %> </td>
+          <td><%= data.filo %></td>
+          <td><%= data.classe %></td>
+          <td><%= data.infraclasse %></td>
+          <td><%= data.ordem %></td>
+          <td><%= data.familia %></td>
+          <td><%= data.genero %></td>
+          <td><%= data.especie %></td>
+        </tr>
       <% }) %>
-    </tbody>
+      
+      </tbody>
+
+          <button onclick="seeAllRegistersInjSON()">Ver em JSON</button>
+    </div>
+    
 
     <style>
 
@@ -61,6 +68,21 @@
         border-color: black;
       }
 
+      .container button {
+        width: 150px;
+        background-color: greenyellow;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        
+      }
     </style>
+
+    <script>
+
+      function seeAllRegistersInjSON() {
+        window.location.replace("http://localhost:3000/especies/json")
+      }
+    </script>
   </body>
 </html>
