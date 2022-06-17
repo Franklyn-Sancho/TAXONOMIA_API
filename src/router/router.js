@@ -43,6 +43,15 @@ router.post("/form", async (req, res) => {
       });
     }
 
+    /*   Especies.findOne({
+      name,
+    });
+
+    if () {
+      res.status(422).json({
+        failed: "Esta espécie já está no registro",
+      });
+    } else { */
     const especies = new Especies({
       _id: mongoose.Types.ObjectId(),
       name,
@@ -58,15 +67,14 @@ router.post("/form", async (req, res) => {
     especies.save().then(() => {
       let data = JSON.stringify(especies, null, 2);
 
-      fs.writeFile("especie-log.json", data, (err) => {
+      fs.writeFile("lastCreate-log.json", data, (err) => {
         if (err) throw err;
         res.json({
-          success: "Espécie registrada com sucesso"
-        })
+          success: "Espécie registrada com sucesso",
+        });
       });
 
       console.log("Espécie cadastrada com sucesso");
-
     });
   } catch {
     res.status(500).send({
@@ -80,27 +88,31 @@ router.get("/", (req, res) => {
 });
 
 router.get("/especies/ejs", (req, res, next) => {
-  Especies.find({}).then((especie) => {
-    res.render("views", {
-      pis: especie,
+  Especies.find({})
+    .sort({ name: 1 })
+    .then((especie) => {
+      res.render("views", {
+        pis: especie,
+      });
     });
-  });
 });
 
 router.get("/especies/json", (req, res) => {
-  Especies.find({}).then((especie) => {
-    res.json({
-      success: "retornando todas as espécies: ",
-      Especies: especie,
+  Especies.find({})
+    .sort({ name: 1 })
+    .then((especie) => {
+      res.json({
+        success: "retornando todas as espécies: ",
+        Especies: especie,
+      });
+
+      let data = JSON.stringify(especie, null, 2);
+
+      fs.writeFile("allRegister-log.json", data, (err) => {
+        if (err) throw err;
+        console.log("Log criado com sucesso");
+      });
     });
-
-    let data = JSON.stringify(especie, null, 2)
-
-    fs.writeFile('especies-logs.json', data, (err) => {
-      if(err) throw err
-      console.log('Log criado com sucesso')
-    })
-  });
 });
 
 router.get("especie/:name", async (req, res) => {
@@ -153,14 +165,23 @@ router.put("/especie/:name", (req, res) => {
 });
 
 router.delete("/especie/:name", (req, res) => {
-  User.deleteOne({
+  Especies.deleteOne({
     name: req.body.name,
   })
-    .then(() => {
+    .then((especie) => {
       res.json({
         success: "Registro deletado com sucesso",
+        Especies: especie
+      });
+
+      let data = JSON.stringify(especie, null, 2);
+
+      fs.writeFile("especies-logs.json", data, (err) => {
+        if (err) throw err;
+        console.log("Log Atualizado com Sucesso");
       });
     })
+
     .catch((err) => {
       res.send(err);
     });
