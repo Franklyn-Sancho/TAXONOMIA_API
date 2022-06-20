@@ -10,6 +10,16 @@
 
     <div class="container">
       <h4>Lista de cadastrados</h4>
+
+      <div class="control-table">
+        <div class="total-register">
+          <label>Total de espécies:</label>
+          <input type="text" name="value" value="0" id="totalRegister" onchange="countLines(this)" readonly>
+        </div>
+        <div class="button-json">
+          <button onclick="seeAllRegistersInjSON()">Ver em JSON</button>
+        </div>
+      </div>
     
       <table border="1">
       <thead>
@@ -18,7 +28,7 @@
           <td>reino</td>
           <td>filo</td>
           <td>classe</td>
-         <td>infraclasse</td>
+          <td>infraclasse</td>
           <td>ordem</td>
           <td>familia</td>
           <td>genero</td>
@@ -42,7 +52,6 @@
       
       </tbody>
 
-          <button onclick="seeAllRegistersInjSON()">Ver em JSON</button>
     </div>
     
 
@@ -76,6 +85,27 @@
         margin-bottom: 10px;
         
       }
+
+      .control-table {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .button-json {
+        position: relative;
+        right: 210px;
+      }
+
+      .total-register {
+        display: flex;
+        align-items: center;
+        width: 225px;
+        justify-content: space-evenly;
+      }
+
+      #totalRegister {
+        width: 60px;
+      }
     </style>
 
     <script>
@@ -83,6 +113,15 @@
       function seeAllRegistersInjSON() {
         window.location.replace("http://localhost:3000/especies/json")
       }
+
+      function countLines() {
+        const lines = document.querySelectorAll("tr")
+        const register = document.getElementById('totalRegister')
+
+        let rows = parseInt(register.value)
+        register.value = lines.length - 1
+      } 
+
     </script>
   </body>
 </html>

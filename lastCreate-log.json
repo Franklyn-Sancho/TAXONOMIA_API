@@ -1,13 +1,13 @@
 {
-  "_id": "62acb79ce05775224e4d7e99",
+  "_id": "62b08c59d2d1b1a2e83f0e09",
   "name": "leopardo",
   "reino": "animalia",
   "filo": "chordata",
   "classe": "mammalia",
   "infraclasse": "plancetália",
-  "ordem": "carnivora",
+  "ordem": "carnivoro",
   "familia": "felidae",
   "genero": "panthera",
-  "especie": "C. uncia",
+  "especie": "P. pardus",
   "__v": 0
 }
