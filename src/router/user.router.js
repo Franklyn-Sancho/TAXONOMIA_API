@@ -1,80 +1,17 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
-const User = require("../model/user.model");
-
 const router = express.Router();
+const controllers = require('../controllers/controllers.users')
 
-router.post("/user/signup", async (req, res) => {
-  const { email, password } = req.body;
+router.get('/user/signup', (req, res) => {
+    res.render('signup')
+})
 
-  const hashPassword = await bcrypt.hash(password, 10);
+router.get('/user/signin', (req, res) => {
+    res.render('signin')
+})
 
-  try 
-  {
-    const user = new User({
-      _id: new mongoose.Types.ObjectId(),
-      email,
-      password: hashPassword,
-    });
-    user.save().then(() => {
-      res.status(201).json({
-        success: "Usuário salvo com sucesso",
-      });
-    });
-  } 
-  catch 
-  {
-    res.status(500).send({
-      failed: "Ops! ocorreu um erro",
-    });
-  }
-});
+router.post("/user/signup", controllers.signup)
 
-router.post("/user/signin", (req, res) => {
-  
-    try 
-    {
-    User.findOne({
-      email: req.body.email,
-    })
-      .exec()
-      .then((user) => {
-        bcrypt.compare(req.body.password, user.password, (err, result) => {
-          if (err) {
-            return res.status(401).json({
-              failed: "Unauthorized Access",
-            });
-          }
-          if (result) {
-            const token = jwt.sign(
-              {
-                email: user.email,
-                _id: user._id,
-              },
-              "secret",
-              {
-                expiresIn: "2h",
-              }
-            );
-            res.status(200).json({
-              success: "Logado como administrador",
-              token: token,
-            });
-          }
-          return res.status(401).json({
-            failed: "Acesso não autorizado",
-          });
-        });
-      });
-  } 
-  catch 
-  {
-    res.status(500).send({
-      failed: "Ops! ocorreu um erro",
-    });
-  }
-});
+router.post("/user/signin", controllers.signin)
 
 module.exports = router;
