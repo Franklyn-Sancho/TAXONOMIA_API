@@ -2,7 +2,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const mongoose = require('mongoose') 
-const routes = require('./src/router/router'); 
+const routesEspecies = require('./src/router/especies.router'); 
+const routesUser = require('./src/router/user.router')
+
 
 const app = express();
 
@@ -22,7 +24,8 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 app.set('views', './src/public');
 
-app.use('/', routes)
+app.use('/', routesEspecies)
+app.use('/', routesUser)
 
 const PORT = 3000
 

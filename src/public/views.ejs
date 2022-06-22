@@ -13,7 +13,7 @@
 
       <div class="control-table">
         <div class="total-register">
-          <label>Total de espécies:</label>
+          <label>total de registros:</label>
           <input type="text" name="value" value="0" id="totalRegister" onchange="countLines(this)" readonly>
         </div>
         <div class="button-json">
@@ -33,6 +33,7 @@
           <td>familia</td>
           <td>genero</td>
          <td>especie</td>
+         <td>ações</td>
         </tr>
       </thead>
     <tbody>
@@ -67,6 +68,8 @@
         text-align: center;
         background-color: blueviolet;
         border-color: black;
+        font-weight: 700;
+        font-size: 15px;
       }
 
       tbody td {
@@ -75,9 +78,11 @@
         text-align: center;
         background-color: chartreuse;
         border-color: black;
+        font-size: 12px;
+        font-weight: 400;
       }
 
-      .container button {
+      .button-json button {
         width: 150px;
         background-color: greenyellow;
         border-radius: 5px;
@@ -93,7 +98,7 @@
 
       .button-json {
         position: relative;
-        right: 210px;
+        right: 85px;
       }
 
       .total-register {
@@ -105,15 +110,23 @@
 
       #totalRegister {
         width: 60px;
+        border: none;
+        font-size: 17px;
+        font-weight: 700;
       }
+
+
+
     </style>
 
     <script>
 
+      //função responsável por acessar a rota em JSON
       function seeAllRegistersInjSON() {
         window.location.replace("http://localhost:3000/especies/json")
       }
 
+      //Função responsável por contar o total de registro da tabela
       function countLines() {
         const lines = document.querySelectorAll("tr")
         const register = document.getElementById('totalRegister')
@@ -122,6 +135,12 @@
         register.value = lines.length - 1
       } 
 
+     
+
+      countLines()
+
     </script>
+
+    
   </body>
 </html>

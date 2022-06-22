@@ -1,10 +1,16 @@
 const express = require("express");
-/* const bcrypt = require("bcrypt"); */
+
 const Especies = require("../model/animals.model");
+const User = require("../model/user.model");
 const mongoose = require("mongoose");
 const fs = require("fs");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
+
+/**
+ * ====> ROTAS DE FORMULÁRIO E RETORNO
+ */
 
 //rota EJS do formulário
 router.get("/form", (req, res) => {
@@ -12,69 +18,28 @@ router.get("/form", (req, res) => {
 });
 
 router.post("/form", async (req, res) => {
-  const {
-    name,
-    reino,
-    filo,
-    classe,
-    infraclasse,
-    ordem,
-    familia,
-    genero,
-    especie,
-  } = req.body;
-
   try {
-    if (
-      !(
-        name &&
-        reino &&
-        filo &&
-        classe &&
-        infraclasse &&
-        ordem &&
-        familia &&
-        genero &&
-        especie
-      )
-    ) {
-      res.status(422).send({
-        failed: "Preencha todos os dados necessários",
-      });
-    }
-
-    /*   Especies.findOne({
-      name,
-    });
-
-    if () {
-      res.status(422).json({
-        failed: "Esta espécie já está no registro",
-      });
-    } else { */
     const especies = new Especies({
       _id: mongoose.Types.ObjectId(),
-      name,
-      reino,
-      filo,
-      classe,
-      infraclasse,
-      ordem,
-      familia,
-      genero,
-      especie,
+      name: req.body.name,
+      reino: req.body.reino,
+      filo: req.body.filo,
+      classe: req.body.classe,
+      infraclasse: req.body.infraclasse,
+      ordem: req.body.ordem,
+      familia: req.body.familia,
+      genero: req.body.genero,
+      especie: req.body.especie,
     });
     especies.save().then(() => {
       let data = JSON.stringify(especies, null, 2);
 
-      fs.writeFile("lastCreate-log.json", data, (err) => {
+      fs.writeFile("entry-log.json", data, (err) => {
         if (err) throw err;
         res.json({
           success: "Espécie registrada com sucesso",
         });
       });
-
-      console.log("Espécie cadastrada com sucesso");
     });
   } catch {
     res.status(500).send({
@@ -108,20 +73,20 @@ router.get("/especies/json", (req, res) => {
 
       let data = JSON.stringify(especie, null, 2);
 
-      fs.writeFile("allRegister-log.json", data, (err) => {
+      fs.writeFile("register-log.json", data, (err) => {
         if (err) throw err;
         console.log("Log criado com sucesso");
       });
     });
 });
 
-router.get("especie/:name", async (req, res) => {
+router.get("/especie/:name", async (req, res) => {
   const { name } = req.body;
 
-  const especie = await Especies.findOne({
+  await Especies.findOne({
     name: name,
   })
-    .then(() => {
+    .then((especie) => {
       res.status(200).json(especie);
     })
     .catch((err) => {
@@ -130,6 +95,15 @@ router.get("especie/:name", async (req, res) => {
       });
     });
 });
+
+/**
+ * ROTAS DE SIGNIN E SIGNUP
+ */
+
+
+/**
+ * =====> INICIO DAS ROTAS PRIVADAS
+ */
 
 //update router
 router.put("/especie/:name", (req, res) => {
@@ -171,14 +145,7 @@ router.delete("/especie/:name", (req, res) => {
     .then((especie) => {
       res.json({
         success: "Registro deletado com sucesso",
-        Especies: especie
-      });
-
-      let data = JSON.stringify(especie, null, 2);
-
-      fs.writeFile("especies-logs.json", data, (err) => {
-        if (err) throw err;
-        console.log("Log Atualizado com Sucesso");
+        Especies: especie,
       });
     })
 
@@ -186,5 +153,15 @@ router.delete("/especie/:name", (req, res) => {
       res.send(err);
     });
 });
+
+/**
+ * => controle de validação de formulário - FEITO 21/06/2022
+ * => sistema de autenticação de usuário
+ * => rotas privadas para usuários autenticados
+ * => sistema de administrador e moderador
+ * => controle de exceções
+ * => conceito de SOLID ou melhoria de código
+ * => criação de logs mais explicativos
+ */
 
 module.exports = router;

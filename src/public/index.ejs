@@ -1,65 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulário Json</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="form-user">
-            <h5>registre uma espécie</h5>
-            <form action="/form" method="POST">
-                <input type="text" placeholder="nome popular" name="name">
-                <input type="text" placeholder="reino" name="reino">
-                <input type="text" placeholder="filo" name="filo">
-                <input type="text" placeholder="classe" name="classe">
-                <input type="text" placeholder="infraclasse" name="infraclasse">
+      <div class="form-user">
+        <h5>registre uma espécie</h5>
+        <form action="/form" method="POST">
+          <input type="text" placeholder="nome popular" name="name" required />
 
-                <input type="text" placeholder="ordem" name="ordem">
-                <input type="text" placeholder="familia" name="familia">
-                <input type="text" placeholder="genero" name="genero">
-                <input type="text" placeholder="especie" name="especie">
+          <input type="text" placeholder="reino" name="reino" required />
 
-                <button type="submit">Cadastrar</button>
-            </form>
-        </div>
+          <input type="text" placeholder="filo" name="filo" required />
+
+          <input type="text" placeholder="classe" name="classe" required />
+
+          <input type="text" placeholder="infraclasse" name="infraclasse" required/>
+
+          <input type="text" placeholder="ordem" name="ordem" required />
+
+          <input type="text" placeholder="familia" name="familia" required />
+
+          <input type="text" placeholder="genero" name="genero" required />
+
+          <input type="text" placeholder="especie" name="especie" required />
+
+          <button type="submit">Cadastrar</button>
+          <span id="msg"></span>
+        </form>
+      </div>
     </div>
 
     <style>
+      form {
+        width: 800px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
 
-        form {
-            width: 800px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-        }
+      form h5 {
+        margin: 5px;
+      }
 
-        form h5 {
-            margin: 5px;
-        }
+      form input {
+        width: 250px;
+        height: 40px;
+        margin: 5px;
+        border-radius: 3px;
+        border: 1px solid #464646;
+        padding: 5px;
+        text-transform: capitalize;
+      }
 
-        form input {
-            width: 250px;
-            height: 40px;
-            margin: 5px;
-            border-radius: 3px;
-            border: 1px solid #464646;
-            padding: 5px;
-            text-transform: capitalize;
-        }
+      form input::placeholder {
+        font-size: 17px;
+      }
 
-        form input::placeholder {
-            font-size: 17px;
-        }
+      form button {
+        width: 250px;
+        height: 50px;
+        margin: 8px;
+        padding: 5px;
+      }
 
-        form button {
-            width: 250px;
-            height: 50px;
-            margin: 8px;
-            padding: 5px;    
-        }
+      #alert {
+        color: red;
+        font-size: 20px;
+      }
     </style>
 
-</body>
+    <script></script>
+  </body>
 </html>
