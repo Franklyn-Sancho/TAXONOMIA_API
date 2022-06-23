@@ -61,16 +61,15 @@ async function returnViewJson(req, res) {
     });
 }
 
-async function returnOneSpecies() {
-  const { name } = req.body;
+async function returnOneSpecies(req, res) {
 
-  await Especies.findOne({
-    name: name,
+  await Especies.find({
+    name: req.params.name
   })
     .then((especie) => {
       res.status(200).json(especie);
     })
-    .catch((err) => {
+    .catch(() => {
       res.status(400).send({
         failed: "Espécie não encontrada",
       });
