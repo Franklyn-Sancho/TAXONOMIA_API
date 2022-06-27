@@ -12,25 +12,15 @@
         <h3>O que faremos hoje?</h3>
       </div>
       <div class="control-options">
-        <button onclick="register()">Cadastrar espécie</button>
-        <button onclick="seeAllRegisters()">Ver lista de espécies</button>
+        <a href="/form">
+          <button onclick="register()">Cadastrar espécie</button>
+        </a>
+        <a href="/especies/ejs">
+          <button onclick="seeAllRegisters()">Ver lista de espécies</button>
+        </a>
       </div>
     </div>
 
-    <script>
-      function register() {
-        window.location.replace("http://localhost:3000/form");
-      }
-
-      function seeAllRegisters() {
-        window.location.replace("http://localhost:3000/especies/ejs");
-      }
-
-      function searchRegister() {
-
-        
-      }
-    </script>
 
     <style>
       .control-options {
@@ -41,7 +31,6 @@
         width: 150px;
         height: 40px;
       }
-
     </style>
   </body>
 </html>

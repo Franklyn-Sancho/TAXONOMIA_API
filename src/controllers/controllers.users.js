@@ -26,19 +26,13 @@ async function signup(req, res) {
   }
 }
 
-function signin(req, res) {
+async function signin(req, res) {
   try {
-    User.findOne({
+    await User.findOne({
       email: req.body.email,
     })
-      .exec()
       .then((user) => {
-        bcrypt.compare(req.body.password, user.password, (err, result) => {
-          if (err) {
-            return res.status(401).json({
-              failed: "Unauthorized Access",
-            });
-          }
+        bcrypt.compare(req.body.password, user.password, (result) => {
           if (result) {
             const token = jwt.sign(
               {
@@ -54,10 +48,11 @@ function signin(req, res) {
               success: "Logado como administrador",
               token: token,
             });
+          } else {
+            return res.status(401).json({
+              failed: `acesso não autorizado`,
+            });
           }
-          return res.status(401).json({
-            failed: "Acesso não autorizado",
-          });
         });
       });
   } catch {
