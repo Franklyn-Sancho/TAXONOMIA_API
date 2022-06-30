@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Especies = require("../model/animals.model");
+const path = require("path")
 const fs = require("fs");
+const dataJson = path.resolve('../../data-logs.json')
 
 async function saveNewSpecies(req, res) {
   try {
@@ -40,31 +42,48 @@ function returnViewEjs(req, res) {
       res.render("especies", {
         pis: especie,
       });
+    })
+    .catch(() => {
+      let readOffline = JSON.stringify(especie, null, 2);
+
+      fs.readFile("../../register-log.json", readOffline, (err) => {
+        if (err) throw err;
+        console.log("Acessando arquivo salvo");
+      });
     });
+}
+
+async function returnViewJsonOffline(req, res) {
+  //Retornar arquivo em log quando o mongo não conectar
 }
 
 async function returnViewJson(req, res) {
-  await Especies.find({})
-    .sort({ name: 1 })
-    .then((especie) => {
-      res.json({
-        success: "retornando todas as espécies: ",
-        Especies: especie,
-      });
+  try {
+    await Especies.find({})
+      .sort({ name: 1 })
+      .then((especie) => {
+        res.json({
+          success: "retornando todas as espécies: ",
+          Especies: especie,
+        });
 
-      let data = JSON.stringify(especie, null, 2);
+        let data = JSON.stringify(especie, null, 2);
 
-      fs.writeFile("register-log.json", data, (err) => {
-        if (err) throw err;
-        console.log("Log criado com sucesso");
+        fs.writeFile("data-logs.json", data, (err) => {
+          if (err) throw err;
+          console.log("Log criado com sucesso");
+        });
       });
+  } catch {
+    res.status(500).send({
+      failed: "Ops! ocorreu um erro",
     });
+  }
 }
 
 async function returnOneSpecies(req, res) {
-
   await Especies.find({
-    name: req.params.name
+    name: req.params.name,
   })
     .then((especie) => {
       res.status(200).json(especie);
@@ -104,24 +123,34 @@ function updateSpecies(req, res) {
       });
     })
     .catch((err) => {
-      res.send(err);
+      res.send({
+        failed: `Não autorizado ou erro de dados ${err}`,
+      });
     });
 }
 
 function deleteSpecies(req, res) {
-  Especies.deleteOne({
-    name: req.body.name,
-  })
-    .then((especie) => {
-      res.json({
-        success: "Registro deletado com sucesso",
-        Especies: especie,
-      });
+  try {
+    Especies.deleteOne({
+      name: req.body.name,
     })
+      .then((especie) => {
+        res.json({
+          success: "Registro deletado com sucesso",
+          Especies: especie,
+        });
+      })
 
-    .catch((err) => {
-      res.send(err);
+      .catch((err) => {
+        res.send({
+          failed: `Não autorizado ou erro de dados ${err}`,
+        });
+      });
+  } catch {
+    res.status(500).send({
+      failed: "Ação não autorizada",
     });
+  }
 }
 
 module.exports = {
@@ -131,4 +160,5 @@ module.exports = {
   returnOneSpecies,
   updateSpecies,
   deleteSpecies,
+  returnViewJsonOffline,
 };

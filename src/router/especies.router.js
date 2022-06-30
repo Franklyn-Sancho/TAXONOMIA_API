@@ -1,25 +1,23 @@
 const express = require("express");
 const controllers = require("../controllers/controllers.especies");
+const auth = require('../middleware/auth')
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("main");
-});
 
 //rota EJS do formulário
 router.get("/form", (req, res) => {
   res.render("formulario");
 });
 
-
-
 router.post("/form", controllers.saveNewSpecies);
-router.get("/especies/ejs", controllers.returnViewEjs);
-router.get("/especies/json", controllers.returnViewJson);
-router.put("/especie/:name", controllers.updateSpecies);
-router.delete("/especie/:name", controllers.deleteSpecies);
-router.get("/especie/:name", controllers.returnOneSpecies);
+router.get("/ejs", controllers.returnViewEjs);
+router.get("/json", controllers.returnViewJson);
+router.get("/:name", controllers.returnOneSpecies);
+router.get('/teste', controllers.returnViewJsonOffline)
+router.put("/:name", auth, controllers.updateSpecies);
+router.delete("/:name", auth, controllers.deleteSpecies);
+
 
 module.exports = router;
 

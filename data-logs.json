@@ -39,46 +39,7 @@
     "__v": 0
   },
   {
-    "_id": "62b1c96a16dac9ce234a7a63",
-    "name": "leão",
-    "reino": "leão",
-    "filo": "leão",
-    "classe": "leão",
-    "infraclasse": "leão",
-    "ordem": "leão",
-    "familia": "leão",
-    "genero": "leão",
-    "especie": "leão",
-    "__v": 0
-  },
-  {
-    "_id": "62b1cfeb134a82c86833860b",
-    "name": "leão",
-    "reino": "leão",
-    "filo": "leão",
-    "classe": "leão",
-    "infraclasse": "leão",
-    "ordem": "leão",
-    "familia": "leão",
-    "genero": "leão",
-    "especie": "leão",
-    "__v": 0
-  },
-  {
-    "_id": "62b34204f7cbb7f90adebf29",
-    "name": "leão",
-    "reino": "animalia",
-    "filo": "chordata",
-    "classe": "mammalia",
-    "infraclasse": "plancetália",
-    "ordem": "carnivora",
-    "familia": "panthera",
-    "genero": "felidae",
-    "especie": "P. Leo",
-    "__v": 0
-  },
-  {
-    "_id": "62acb07c6c82336ee37c6210",
+    "_id": "62bc625abd9e657155c6a935",
     "name": "tigre",
     "reino": "animalia",
     "filo": "chordata",
