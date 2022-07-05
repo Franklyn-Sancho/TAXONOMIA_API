@@ -13,20 +13,12 @@ router.get("/form", (req, res) => {
 router.post("/form", controllers.saveNewSpecies);
 router.get("/ejs", controllers.returnViewEjs);
 router.get("/json", controllers.returnViewJson);
-router.get("/:name", controllers.returnOneSpecies);
-router.get('/teste', controllers.returnViewJsonOffline)
+router.get("/:name", controllers.returnOneSpecie);
+
+//rotas que só podem ser acessadosc como adm
 router.put("/:name", auth, controllers.updateSpecies);
 router.delete("/:name", auth, controllers.deleteSpecies);
 
 
 module.exports = router;
 
-/**
- * => controle de validação de formulário - FEITO 21/06/2022
- * => sistema de autenticação de usuário
- * => rotas privadas para usuários autenticados
- * => sistema de administrador e moderador
- * => controle de exceções
- * => conceito de SOLID ou melhoria de código
- * => criação de logs mais explicativos
- */

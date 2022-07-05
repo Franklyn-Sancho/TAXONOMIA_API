@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const Especies = require("../model/animals.model");
-const path = require("path")
 const fs = require("fs");
-const dataJson = path.resolve('../../data-logs.json')
 
 async function saveNewSpecies(req, res) {
   try {
@@ -19,20 +17,25 @@ async function saveNewSpecies(req, res) {
       especie: req.body.especie,
     });
     especies.save().then(() => {
-      let data = JSON.stringify(especies, null, 2);
-
-      fs.writeFile("entry-log.json", data, (err) => {
-        if (err) throw err;
-        res.json({
-          success: "Espécie registrada com sucesso",
-        });
+      res.json({
+        success: "Especie criada com sucesso",
       });
+      createLastEntryLog(especies)
     });
   } catch {
     res.status(500).send({
       failed: "Ops! alguma coisa errada aconteceu! verifique os dados",
     });
   }
+}
+
+function createLastEntryLog(especie) {
+  let data = JSON.stringify(especie, null, 2);
+
+  fs.writeFile("last-entry.json", data, (err) => {
+    if (err) throw err;
+    console.log(`Log do último registro criado com sucesso ${Date()}`);
+  });
 }
 
 function returnViewEjs(req, res) {
@@ -44,17 +47,10 @@ function returnViewEjs(req, res) {
       });
     })
     .catch(() => {
-      let readOffline = JSON.stringify(especie, null, 2);
-
-      fs.readFile("../../register-log.json", readOffline, (err) => {
-        if (err) throw err;
-        console.log("Acessando arquivo salvo");
+      res.send({
+        failed: "Ops! ocorreu um erro",
       });
     });
-}
-
-async function returnViewJsonOffline(req, res) {
-  //Retornar arquivo em log quando o mongo não conectar
 }
 
 async function returnViewJson(req, res) {
@@ -63,25 +59,28 @@ async function returnViewJson(req, res) {
       .sort({ name: 1 })
       .then((especie) => {
         res.json({
-          success: "retornando todas as espécies: ",
+          success: `Ultima atuatização: ${Date()}`,
           Especies: especie,
         });
-
-        let data = JSON.stringify(especie, null, 2);
-
-        fs.writeFile("data-logs.json", data, (err) => {
-          if (err) throw err;
-          console.log("Log criado com sucesso");
-        });
+        createAllEntryLog(especie)
       });
   } catch {
     res.status(500).send({
-      failed: "Ops! ocorreu um erro",
+      failed: "Ops!ocorreu um erro",
     });
   }
 }
 
-async function returnOneSpecies(req, res) {
+function createAllEntryLog(especie) {
+  let data = JSON.stringify(especie, null, 2);
+
+  fs.writeFile("data-logs.json", data, (err) => {
+    if (err) throw err;
+    console.log("Log criado com sucesso");
+  });
+}
+
+async function returnOneSpecie(req, res) {
   await Especies.find({
     name: req.params.name,
   })
@@ -157,8 +156,7 @@ module.exports = {
   saveNewSpecies,
   returnViewEjs,
   returnViewJson,
-  returnOneSpecies,
+  returnOneSpecie,
   updateSpecies,
   deleteSpecies,
-  returnViewJsonOffline,
 };

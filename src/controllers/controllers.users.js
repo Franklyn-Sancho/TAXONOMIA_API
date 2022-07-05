@@ -3,6 +3,12 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const User = require("../model/user.model");
 
+/**
+ * responsabilidades dessa função:
+ * => criptografar a senha
+ * => testar formulário
+ * => salvar usuário
+ */
 async function signup(req, res) {
   try {
     const { email, password } = req.body;

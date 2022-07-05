@@ -23,7 +23,7 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 app.set('views', './src/public');
 
-app.use('/especies', routesEspecies)
+app.use('/', routesEspecies)
 app.use('/users', routesUser)
 
 app.get("/", (req, res) => {
