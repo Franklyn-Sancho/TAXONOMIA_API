@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Especies = require("../model/animals.model");
-const fs = require("fs");
+const controllers = require("../controllers/controllers.logCreate");
 
 async function saveNewSpecies(req, res) {
   try {
@@ -20,22 +20,13 @@ async function saveNewSpecies(req, res) {
       res.json({
         success: "Especie criada com sucesso",
       });
-      createLastEntryLog(especies)
+      controllers.createLastEntryLog(especies);
     });
   } catch {
     res.status(500).send({
-      failed: "Ops! alguma coisa errada aconteceu! verifique os dados",
+      failed: "Ops! alguma coisa errada aconteceu!",
     });
   }
-}
-
-function createLastEntryLog(especie) {
-  let data = JSON.stringify(especie, null, 2);
-
-  fs.writeFile("last-entry.json", data, (err) => {
-    if (err) throw err;
-    console.log(`Log do último registro criado com sucesso ${Date()}`);
-  });
 }
 
 function returnViewEjs(req, res) {
@@ -45,6 +36,7 @@ function returnViewEjs(req, res) {
       res.render("especies", {
         pis: especie,
       });
+      controllers.createAllEntryLog(especie);
     })
     .catch(() => {
       res.send({
@@ -62,22 +54,13 @@ async function returnViewJson(req, res) {
           success: `Ultima atuatização: ${Date()}`,
           Especies: especie,
         });
-        createAllEntryLog(especie)
+        controllers.createAllEntryLog(especie);
       });
   } catch {
     res.status(500).send({
       failed: "Ops!ocorreu um erro",
     });
   }
-}
-
-function createAllEntryLog(especie) {
-  let data = JSON.stringify(especie, null, 2);
-
-  fs.writeFile("data-logs.json", data, (err) => {
-    if (err) throw err;
-    console.log("Log criado com sucesso");
-  });
 }
 
 async function returnOneSpecie(req, res) {
