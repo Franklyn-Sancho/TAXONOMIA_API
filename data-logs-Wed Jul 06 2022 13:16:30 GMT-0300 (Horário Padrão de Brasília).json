@@ -1,0 +1,54 @@
+[
+  {
+    "_id": "62b09629c2c2d56dacae780f",
+    "name": "gato",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "placentália",
+    "ordem": "carnivora",
+    "familia": "felidae",
+    "genero": "felis",
+    "especie": "felis catus",
+    "__v": 0
+  },
+  {
+    "_id": "62b08c59d2d1b1a2e83f0e09",
+    "name": "leopardo",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "plancetália",
+    "ordem": "carnivoro",
+    "familia": "felidae",
+    "genero": "panthera",
+    "especie": "P. pardus",
+    "__v": 0
+  },
+  {
+    "_id": "62acaf71de6bdc0b5eacc542",
+    "name": "leão",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "plancetália",
+    "ordem": "carnivora",
+    "familia": "felidae",
+    "genero": "Panthera",
+    "especie": "P. leo",
+    "__v": 0
+  },
+  {
+    "_id": "62bc625abd9e657155c6a935",
+    "name": "tigre",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "plancetália",
+    "ordem": "carnivora",
+    "familia": "felidae",
+    "genero": "Panthera",
+    "especie": "P. tigris",
+    "__v": 0
+  }
+]

@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const User = require("../model/user.model");
+const logger = require('../logs/logger')
 
 /**
  * responsabilidades dessa função:
@@ -23,18 +24,21 @@ async function signup(req, res) {
       });
       user.save().then(() => {
         res.status(201).json({
-          success: "Usuário salvo com sucesso",
+          success: "Moderador criado com sucesso",
         });
+        logger.info(`Moderador ${email} criado com sucesso`)
       });
     } else {
       res.status(400).send({
         failed: "Email e senha requeridos",
       });
+      logger.error("Ocorreu um erro ao criar moderador")
     }
   } catch {
     res.status(500).send({
       failed: "Ops! ocorreu um erro",
     });
+    logger.error("Erro 500 ao criar moderador")
   }
 }
 
@@ -61,11 +65,13 @@ async function signin(req, res) {
           });
 
           user.token = token
+          logger.info(`Moderador ${req.body.email} logou às ${Date()}`)
         } else {
-          console.log(result);
+          logger.error(`erro ao logar com: ${req.body.email}`)
           return res.status(401).json({
-            failed: `acesso não autorizado ${error}`,
+            failed: `acesso não autorizado`,
           });
+          
         }
       });
     });

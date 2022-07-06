@@ -5,7 +5,7 @@
  * => sistema de autenticação de usuário - FEITO 
  * => sistema de administrador - FEITO ADMINISTRADOR
  * => rotas privadas para usuários autenticados (administradores) - FEITO
- * => controle de exceções
+ * => controle de exceções 
  * => conceito de SOLID ou melhoria de código
  * => criação de logs mais explicativos
  */
