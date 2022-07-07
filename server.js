@@ -3,7 +3,6 @@ const bodyParser = require('body-parser')
 const routesEspecies = require('./src/router/especies.router'); 
 const routesUser = require('./src/router/user.router')
 
-
 const app = express();
 
 require('dotenv').config()
@@ -34,6 +33,8 @@ app.get("/", (req, res) => {
 
 const PORT = 3000
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server is running on Port ${PORT}::acesse => localhost:3000`)
 })
+
+module.exports = server

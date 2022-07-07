@@ -18,7 +18,7 @@ async function saveNewSpecies(req, res) {
       especie: req.body.especie,
     });
     especies.save().then(() => {
-      res.json({
+      res.status(200).json({
         success: "Especie criada com sucesso",
       });
       controllers.createLastEntryLog(especies);

@@ -23,7 +23,7 @@ async function signup(req, res) {
         password: hashPassword,
       });
       user.save().then(() => {
-        res.status(201).json({
+        res.status(200).json({
           success: "Moderador criado com sucesso",
         });
         logger.info(`Moderador ${email} criado com sucesso`)
