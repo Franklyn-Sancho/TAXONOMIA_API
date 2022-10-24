@@ -1,18 +1,5 @@
 [
   {
-    "_id": "62b09629c2c2d56dacae780f",
-    "name": "gato",
-    "reino": "animalia",
-    "filo": "chordata",
-    "classe": "mammalia",
-    "infraclasse": "placentália",
-    "ordem": "carnivora",
-    "familia": "felidae",
-    "genero": "felis",
-    "especie": "felis catus",
-    "__v": 0
-  },
-  {
     "_id": "62b08c59d2d1b1a2e83f0e09",
     "name": "leopardo",
     "reino": "animalia",
@@ -36,6 +23,32 @@
     "familia": "felidae",
     "genero": "Panthera",
     "especie": "P. leo",
+    "__v": 0
+  },
+  {
+    "_id": "63569843da1ccc516a8d1db5",
+    "name": "lobo",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "placentália",
+    "ordem": "carnivora",
+    "familia": "canodae",
+    "genero": "canis",
+    "especie": "V. lupus",
+    "__v": 0
+  },
+  {
+    "_id": "635696a49335335a66c59266",
+    "name": "raposa",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "placentália",
+    "ordem": "carnivora",
+    "familia": "canodae",
+    "genero": "vulpes",
+    "especie": "V. vulpes",
     "__v": 0
   },
   {

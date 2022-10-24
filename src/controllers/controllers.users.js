@@ -32,7 +32,7 @@ async function signup(req, res) {
       res.status(400).send({
         failed: "Email e senha requeridos",
       });
-      logger.error("Ocorreu um erro ao criar moderador")
+      logger.error("Erro 400 ao criar moderador")
     }
   } catch {
     res.status(500).send({
@@ -71,7 +71,7 @@ async function signin(req, res) {
           return res.status(401).json({
             failed: `acesso não autorizado`,
           });
-          
+
         }
       });
     });

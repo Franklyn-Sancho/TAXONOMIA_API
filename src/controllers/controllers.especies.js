@@ -15,20 +15,21 @@ async function saveNewSpecies(req, res) {
       ordem: req.body.ordem,
       familia: req.body.familia,
       genero: req.body.genero,
-      especie: req.body.especie,
-    });
+      especie: req.body.especie
+    })
+
     especies.save().then(() => {
       res.status(200).json({
-        success: "Especie criada com sucesso",
+        success: "Espécie cadastrada com sucesso",
       });
       controllers.createLastEntryLog(especies);
-      logger.info("Uma espécie foi criada no banco de dados");
+      logger.info(`${especies} foi cadastrado com sucesso às ${Date()}`);
     });
   } catch {
     res.status(500).send({
-      failed: "Ops! alguma coisa errada aconteceu!",
+      failed: "Ops! Ocorreu um erro",
     });
-    logger.error("Error 500 ao criar espécie");
+    logger.error("Erro 500 ao criar espécie");
   }
 }
 
@@ -40,7 +41,7 @@ function returnViewEjs(req, res) {
         pis: especie,
       });
       controllers.createAllEntryLog(especie);
-      logger.info("Arquivo Json Criado/Atualizado com sucesso");
+      logger.info(`Arquivo Json criado/atualizado com sucesso às ${Date()}`);
     })
     .catch(() => {
       res.send({
@@ -56,17 +57,17 @@ async function returnViewJson(req, res) {
       .sort({ name: 1 })
       .then((especie) => {
         res.json({
-          success: `Ultima atuatização: ${Date()}`,
+          success: `Ultima atualização: ${Date()}`,
           Especies: especie,
         });
         controllers.createAllEntryLog(especie);
-        logger.info("Arquivo Json Criado/Atualizado com sucesso");
+        logger.info(`Arquivo Json criado/atualizado com sucesso às ${Date()}`);
       });
   } catch {
     res.status(500).send({
       failed: "Ops!ocorreu um erro",
     });
-    logger.error("Erro ao requisitar arquivo json");
+    logger.error("Erro ao acessar os dados em Json");
   }
 }
 
@@ -110,13 +111,13 @@ function updateSpecies(req, res) {
   )
     .then((especie) => {
       res.send({
-        success: "Espécie atualizada com sucesso",
+        success: "A espécie foi atualizada com sucesso",
       });
-      logger.info(`Espécie ${especie} atualizada com sucesso`);
+      logger.info(`Espécie ${especie} foi atualizada com sucesso`);
     })
     .catch((err, especie) => {
       res.send({
-        failed: `Não autorizado ou erro de dados ${err}`,
+        failed: `Acesso não autorizado ou erro ao atualizar ${err}`,
       });
       logger.error(`Erro ao atualizar espécie ${especie}`);
     });
@@ -129,10 +130,9 @@ function deleteSpecies(req, res) {
     })
       .then((especie) => {
         res.json({
-          success: "Registro deletado com sucesso",
-          Especies: especie,
+          success: `Espécie ${req.body.name} deletada com sucesso`,
         });
-        logger.info(`Espécie ${especie} deletada com sucesso`);
+        logger.info(`Espécie ${req.body.name} deletada com sucesso`);
       })
 
       .catch((err) => {
@@ -155,5 +155,7 @@ module.exports = {
   returnViewJson,
   returnOneSpecie,
   updateSpecies,
-  deleteSpecies,
-};
+  deleteSpecies
+}
+
+
