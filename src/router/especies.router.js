@@ -17,7 +17,7 @@ router.get("/:name", controllers.returnOneSpecie);
 
 //rotas que só podem ser acessadosc como adm
 router.put("/:name", auth, controllers.updateSpecies);
-router.delete("/:name", auth, controllers.deleteSpecies);
+router.delete("/delete/:name", auth, controllers.deleteSpecies);
 
 
 module.exports = router;

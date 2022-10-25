@@ -20,7 +20,12 @@ Esta é uma API construída em NODEJS que tem como responsabilidade fazer a comu
 - => controle de validação de formulário - FEITO 21/06/2022
 - => sistema de autenticação de usuário - FEITO 
 - => sistema de administrador - FEITO ADMINISTRADOR
-- => rotas privadas para usuários autenticados (administradores) - FEITO
-- => controle de exceções 
-- => conceito de SOLID ou melhoria de código
-- => criação de logs mais explicativos
+- => rotas privadas para usuários autenticados (administradores e moderadores) - FEITO
+- => controle de exceções - 50% FEITO
+- => conceito de SOLID ou melhoria de código - PRECISA FINALIZAR
+- => criação de logs mais explicativos - FEITO
+- => melhorias na rota delete 
+- => melhorias no controle de validação de dados
+- => adição de datas nos arquivos json
+- => sistema de pesquisa
+- => sistemas de testes

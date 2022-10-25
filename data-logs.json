@@ -1,67 +1,15 @@
 [
   {
-    "_id": "62b08c59d2d1b1a2e83f0e09",
-    "name": "leopardo",
-    "reino": "animalia",
-    "filo": "chordata",
-    "classe": "mammalia",
-    "infraclasse": "plancetália",
-    "ordem": "carnivoro",
-    "familia": "felidae",
-    "genero": "panthera",
-    "especie": "P. pardus",
-    "__v": 0
-  },
-  {
-    "_id": "62acaf71de6bdc0b5eacc542",
-    "name": "leão",
-    "reino": "animalia",
-    "filo": "chordata",
-    "classe": "mammalia",
-    "infraclasse": "plancetália",
-    "ordem": "carnivora",
-    "familia": "felidae",
-    "genero": "Panthera",
-    "especie": "P. leo",
-    "__v": 0
-  },
-  {
-    "_id": "63569843da1ccc516a8d1db5",
-    "name": "lobo",
-    "reino": "animalia",
-    "filo": "chordata",
-    "classe": "mammalia",
-    "infraclasse": "placentália",
-    "ordem": "carnivora",
-    "familia": "canodae",
-    "genero": "canis",
-    "especie": "V. lupus",
-    "__v": 0
-  },
-  {
-    "_id": "635696a49335335a66c59266",
-    "name": "raposa",
-    "reino": "animalia",
-    "filo": "chordata",
-    "classe": "mammalia",
-    "infraclasse": "placentália",
-    "ordem": "carnivora",
-    "familia": "canodae",
-    "genero": "vulpes",
-    "especie": "V. vulpes",
-    "__v": 0
-  },
-  {
-    "_id": "62bc625abd9e657155c6a935",
+    "_id": "635801e95910058d856f2458",
     "name": "tigre",
     "reino": "animalia",
     "filo": "chordata",
     "classe": "mammalia",
-    "infraclasse": "plancetália",
-    "ordem": "carnivora",
+    "infraclasse": "placentalia",
+    "ordem": "tigre",
     "familia": "felidae",
-    "genero": "Panthera",
-    "especie": "P. tigris",
+    "genero": "tigris",
+    "especie": "f. tigris",
     "__v": 0
   }
 ]

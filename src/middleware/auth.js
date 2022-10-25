@@ -8,7 +8,7 @@ const verifyToken = (req, res, next) => {
 
     if(!token) {
         return res.status(403).send({
-            failed: "Token requerido"
+            failed: "Erro! chave requerida"
         })
     }
     try {
@@ -18,7 +18,7 @@ const verifyToken = (req, res, next) => {
     catch (err)
     {
         return res.status(401).send({
-            failed: "Token Inválido"
+            failed: "Acesso não autorizado ou chave inválida"
         })
     }
     return next()

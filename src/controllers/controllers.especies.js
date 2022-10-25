@@ -123,16 +123,17 @@ function updateSpecies(req, res) {
     });
 }
 
-function deleteSpecies(req, res) {
+async function deleteSpecies(req, res) {
   try {
+
     Especies.deleteOne({
-      name: req.body.name,
+      name: req.params.name,
     })
-      .then((especie) => {
+      .then(() => {
         res.json({
-          success: `Espécie ${req.body.name} deletada com sucesso`,
+          success: `Espécie ${req.params.name} deletada com sucesso`,
         });
-        logger.info(`Espécie ${req.body.name} deletada com sucesso`);
+        logger.info(`Espécie ${req.params.name} deletada com sucesso`);
       })
 
       .catch((err) => {
@@ -143,9 +144,9 @@ function deleteSpecies(req, res) {
       });
   } catch {
     res.status(500).send({
-      failed: "Ação não autorizada",
+      failed: "Ops! Ocorreu um erro",
     });
-    logger.error("Erro 500 ao deletar uma espécie");
+    logger.error("Ocorreu um erro 500 ao deletar espécie");
   }
 }
 
