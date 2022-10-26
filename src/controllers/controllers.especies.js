@@ -3,8 +3,14 @@ const Especies = require("../model/animals.model");
 const controllers = require("../controllers/controllers.logCreate");
 const logger = require("../logs/logger");
 
+
 async function saveNewSpecies(req, res) {
   try {
+
+    let validate = await Especies.findOne({
+      name: req.body.name
+    })
+
     const especies = new Especies({
       _id: mongoose.Types.ObjectId(),
       name: req.body.name,
@@ -18,13 +24,22 @@ async function saveNewSpecies(req, res) {
       especie: req.body.especie
     })
 
-    especies.save().then(() => {
-      res.status(200).json({
-        success: "Espécie cadastrada com sucesso",
+    if(!validate) {
+      especies.save().then(() => {
+        res.status(200).json({
+          success: "Espécie cadastrada com sucesso",
+        });
+        controllers.createLastEntryLog(especies);
+        logger.info(`${req.body.name} foi cadastrado com sucesso às ${Date()}`);
       });
-      controllers.createLastEntryLog(especies);
-      logger.info(`${especies} foi cadastrado com sucesso às ${Date()}`);
-    });
+    }
+    else {
+      res.status(422).send({
+        failed: `Essa espécie já foi cadastrada`
+      })
+    }
+
+    
   } catch {
     res.status(500).send({
       failed: "Ops! Ocorreu um erro",
@@ -126,22 +141,22 @@ function updateSpecies(req, res) {
 async function deleteSpecies(req, res) {
   try {
 
-    Especies.deleteOne({
-      name: req.params.name,
-    })
-      .then(() => {
-        res.json({
-          success: `Espécie ${req.params.name} deletada com sucesso`,
-        });
-        logger.info(`Espécie ${req.params.name} deletada com sucesso`);
-      })
+    const especie = await Especies.find({
+      name: req.params.name
+    }).deleteOne()
 
-      .catch((err) => {
-        res.send({
-          failed: `Não autorizado ou erro de dados ${err}`,
-        });
-        logger.info(`Erro ao deletar especie`);
+    if (especie) {
+      res.status(200).json({
+        sucess: `Espécie ${req.params.name} deletada com sucesso`
+      })
+      logger.info(`Espécie ${req.params.name} deletada com sucesso`)
+    }
+    else {
+      res.send({
+        failed: `Não autorizado ou erro de dados ${err}`,
       });
+      logger.error(`Erro ao deletar especie`);
+    }
   } catch {
     res.status(500).send({
       failed: "Ops! Ocorreu um erro",

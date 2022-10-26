@@ -1,25 +1,26 @@
-{"level":"error","message":"Espécie baleia não foi encontrada"}
-{"level":"error","message":"Espécie cachorro não foi encontrada"}
-{"level":"error","message":"Espécie favicon.ico não foi encontrada"}
-
-{"level":"error","message":"Erro 500 ao deletar uma espécie"}
-{"level":"error","message":"Espécie favicon.ico não foi encontrada"}
-{"level":"error","message":"Espécie tigre não foi encontrada"}
-{"level":"error","message":"Espécie cachorro não foi encontrada"}
-{"level":"error","message":"Espécie tigre não foi encontrada"}
-{"level":"error","message":"Espécie tigre não foi encontrada"}
-{"level":"error","message":"Espécie tigre não foi encontrada"}
-{"level":"error","message":"Ocorreu um erro 500 ao deletar espécie"}
-{"level":"error","message":"Ocorreu um erro 500 ao deletar espécie"}
-{"level":"error","message":"Ocorreu um erro 500 ao deletar espécie"}
-{"level":"error","message":"Ocorreu um erro 500 ao deletar espécie"}
-{"level":"error","message":"Ocorreu um erro 500 ao deletar espécie"}
-{"level":"error","message":"Espécie cachorro não foi encontrada"}
-{"level":"error","message":"Espécie cachorro não foi encontrada"}
-{"level":"error","message":"Espécie cachorro não foi encontrada"}
-{"level":"error","message":"Espécie cachorro não foi encontrada"}
-{"level":"error","message":"Espécie cachorro não foi encontrada"}
-{"level":"error","message":"Espécie gato não foi encontrada"}
-{"level":"error","message":"Espécie gato não foi encontrada"}
-{"level":"error","message":"Ocorreu um erro 500 ao deletar espécie"}
-{"level":"error","message":"Ocorreu um erro 500 ao deletar espécie"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leão"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: leopardo"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: cachorro"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: cachorro"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: cachorro"}
+{"level":"error","message":"Erro 500 ao criar espécie"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: cachorro"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: cachorro"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: cachorro"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: pato"}
+{"level":"error","message":"erro ao tentar cadastrar especie já existente: pato"}

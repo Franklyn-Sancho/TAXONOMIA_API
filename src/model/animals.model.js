@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const taxonomia = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId, //Id será um objeto do Mongo
-    name: {type: String, required: true},
+    name: {type: String, required: true, unique: true},
     reino: {type: String, required: true},
     filo: {type: String, required: true},
     classe: {type: String, required: true}, //Email requerido

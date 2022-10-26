@@ -1,15 +1,67 @@
 [
   {
-    "_id": "635801e95910058d856f2458",
-    "name": "tigre",
+    "_id": "635954cde92e260a57bd1b13",
+    "name": "cachorro",
     "reino": "animalia",
     "filo": "chordata",
     "classe": "mammalia",
     "infraclasse": "placentalia",
-    "ordem": "tigre",
+    "ordem": "gatos",
     "familia": "felidae",
-    "genero": "tigris",
-    "especie": "f. tigris",
+    "genero": "gatis",
+    "especie": "leopardo",
+    "__v": 0
+  },
+  {
+    "_id": "63596fd7b814630f4216a07a",
+    "name": "gato",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "placentalia",
+    "ordem": "gatos",
+    "familia": "felidae",
+    "genero": "gatis",
+    "especie": "leopardo",
+    "__v": 0
+  },
+  {
+    "_id": "63596feaaf2d5eae09da6869",
+    "name": "jacare",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "placentalia",
+    "ordem": "gatos",
+    "familia": "felidae",
+    "genero": "gatis",
+    "especie": "leopardo",
+    "__v": 0
+  },
+  {
+    "_id": "63595375574ac13c78ff2869",
+    "name": "leao",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "placentalia",
+    "ordem": "gatos",
+    "familia": "felidae",
+    "genero": "gatis",
+    "especie": "leopardo",
+    "__v": 0
+  },
+  {
+    "_id": "635953626c0f49f8971b6dd9",
+    "name": "leopardo",
+    "reino": "animalia",
+    "filo": "chordata",
+    "classe": "mammalia",
+    "infraclasse": "placentalia",
+    "ordem": "gatos",
+    "familia": "felidae",
+    "genero": "gatis",
+    "especie": "leopardo",
     "__v": 0
   }
 ]

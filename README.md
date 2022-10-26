@@ -24,7 +24,7 @@ Esta é uma API construída em NODEJS que tem como responsabilidade fazer a comu
 - => controle de exceções - 50% FEITO
 - => conceito de SOLID ou melhoria de código - PRECISA FINALIZAR
 - => criação de logs mais explicativos - FEITO
-- => melhorias na rota delete 
+- => melhorias na rota delete => ainda precisa melhor
 - => melhorias no controle de validação de dados
 - => adição de datas nos arquivos json
 - => sistema de pesquisa
