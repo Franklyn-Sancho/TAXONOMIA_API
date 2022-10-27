@@ -3,11 +3,10 @@ const Especies = require("../model/animals.model");
 const controllers = require("../controllers/controllers.logCreate");
 const logger = require("../logs/logger");
 
-
 async function saveNewSpecies(req, res) {
   try {
 
-    let validate = await Especies.findOne({
+    const validate = await Especies.findOne({
       name: req.body.name
     })
 

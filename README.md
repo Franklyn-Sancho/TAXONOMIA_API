@@ -26,6 +26,6 @@ Esta é uma API construída em NODEJS que tem como responsabilidade fazer a comu
 - => criação de logs mais explicativos - FEITO
 - => melhorias na rota delete => ainda precisa melhor
 - => melhorias no controle de validação de dados
-- => adição de datas nos arquivos json
-- => sistema de pesquisa
+- => adição de datas nos arquivos json => FEITO 27/10/2022
+- => sistema de pesquisa => FEITO
 - => sistemas de testes

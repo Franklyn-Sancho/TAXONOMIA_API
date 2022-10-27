@@ -9,12 +9,12 @@ function createLastEntryLog(especie) {
   });
 }
 
-/**
- * essa funcao ta bugando
- */
 
 function createAllEntryLog(especie) {
-  let data = JSON.stringify(especie, null, 2);
+  let data = JSON.stringify({
+    Date: `última atualização ${Date()}`,
+    Especies: especie
+  });
 
   fs.writeFile(`data-logs.json`, data, (err) => {
     if (err) throw err;
