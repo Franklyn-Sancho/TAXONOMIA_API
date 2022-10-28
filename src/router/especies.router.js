@@ -16,7 +16,7 @@ router.get("/json", controllers.returnViewJson);
 router.get("/:name", controllers.returnOneSpecie);
 
 //rotas que só podem ser acessadosc como adm
-router.put("/:name", auth, controllers.updateSpecies);
+router.put("/update/:name", auth, controllers.updateSpecies);
 router.delete("/delete/:name", auth, controllers.deleteSpecies);
 
 

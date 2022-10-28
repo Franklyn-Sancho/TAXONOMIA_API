@@ -1,3 +1,5 @@
+
+
 const mongoose = require("mongoose");
 const Especies = require("../model/animals.model");
 const controllers = require("../controllers/controllers.logCreate");
@@ -49,7 +51,7 @@ async function saveNewSpecies(req, res) {
 
 function returnViewEjs(req, res) {
   Especies.find({})
-    .sort({ name: 1 })
+    .sort({ name: 1 }) //retornar em ordem alfabética
     .then((especie) => {
       res.render("especies", {
         pis: especie,
@@ -68,7 +70,7 @@ function returnViewEjs(req, res) {
 async function returnViewJson(req, res) {
   try {
     await Especies.find({})
-      .sort({ name: 1 })
+      .sort({ name: 1 }) //retornar em ordem alfabética
       .then((especie) => {
         res.json({
           success: `Ultima atualização: ${Date()}`,
@@ -102,7 +104,7 @@ async function returnOneSpecie(req, res) {
 }
 
 function updateSpecies(req, res) {
-  User.updateOne(
+  Especies.updateOne(
     {
       name: req.body.name,
     },
